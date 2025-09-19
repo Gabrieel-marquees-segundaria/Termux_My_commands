@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# pega o subcomando (primeiro argumento)
+subcommand="$1"
+shift   # remove o primeiro argumento, os próximos vão para o subc>
+
+if [ -x "$(command -v "command-$subcommand")" ]; then
+  # executa o script correspondente, passando os outros args
+  exec "command-$subcommand" "$@"
+else
+  echo "Subcomando inválido: $subcommand"
+  echo "Uso: command {hello|server}"
+fi
+
+
+
+
+#~/bin/
+# ├─ command
+# ├─ command-hello
+# └─ command-server
+
+#command hello
+# -> Hello do subcomando!
+
+#command server
+# -> Iniciando servidor... (e abre outro shell)
+
+#command foo
+# -> Subcomando inválido: foo
+# -> Uso: command {hello|server}
+
+

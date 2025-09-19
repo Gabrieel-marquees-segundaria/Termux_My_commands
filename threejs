@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# pega o subcomando (primeiro argumento)
+subcommand="$1"
+shift   # remove o primeiro argumento, os próximos vão para o subcomando
+
+if [ -x "$(command -v "threejs-$subcommand")" ]; then
+  # executa o script correspondente, passando os outros args
+  exec "threejs-$subcommand" "$@"
+else
+  echo "Subcomando inválido: $subcommand"
+  echo "Uso: threejs {hello|server}"
+fi
