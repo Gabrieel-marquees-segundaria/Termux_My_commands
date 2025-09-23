@@ -1,0 +1,167 @@
+#!/bin/bash
+echo "==================== Termux - Cheatsheet de Comandos (Resumo) ====================
+
+# Navegação e arquivos
+ls                - Lista arquivos e diretórios.
+ls -la            - Lista detalhada (inclui arquivos ocultos).
+cd <dir>          - Muda para o diretório <dir>.
+pwd               - Mostra o diretório atual.
+mkdir <dir>       - Cria diretório.
+rmdir <dir>       - Remove diretório vazio.
+rm <file>         - Remove arquivo.
+rm -rf <dir>      - Remove diretório e conteúdo (cuidado!).
+cp <orig> <dest>  - Copia arquivo/dir.
+mv <orig> <dest>  - Move/renomeia.
+touch <file>      - Cria arquivo vazio ou atualiza timestamp.
+cat <file>        - Exibe conteúdo de arquivo.
+less <file>       - Visualizador paginado (voltar com q).
+head -n 20 <f>    - Mostra primeiras 20 linhas.
+tail -n 20 <f>    - Mostra últimas 20 linhas.
+tail -f <file>    - Segue o arquivo em tempo real.
+nl <file>         - Exibe arquivo com numeração de linhas.
+file <file>       - Detecta tipo de arquivo.
+stat <file>       - Exibe atributos do arquivo.
+
+# Permissões / propriedade
+chmod 755 <file>  - Altera permissões (rwx).
+chown user:group <file> - Muda proprietário/grupo (quando aplicável).
+
+# Texto e busca
+grep "texto" file  - Busca regex/termo no arquivo.
+grep -R "t" dir   - Busca recursiva em diretórios.
+awk '{print $1}' file - Processamento de texto (ex.: coluna 1).
+sed 's/velho/novo/g' file - Substituições simples em linha.
+cut -d' ' -f1 file - Corte por delimitador.
+sort file         - Ordena linhas.
+uniq -c file      - Remove duplicados / conta ocorrências.
+tr 'a' 'b'        - Substitui caracteres simples.
+
+# Processos e sistema
+ps aux            - Lista processos.
+top               - Monitor em tempo real.
+htop              - Top melhorado (pode precisar instalar).
+kill <pid>        - Mata processo por PID.
+pkill <nome>      - Mata processo por nome.
+uptime            - Tempo ligado e carga.
+free -h           - Memória usada/livre.
+df -h             - Espaço em disco (humano).
+du -sh <dir>      - Tamanho de diretório.
+
+# Rede
+ip a              - Mostra interfaces de rede (substitui ifconfig).
+ping host         - Testa conectividade.
+traceroute host   - Rota até host (instale se precisar).
+nslookup host     - Consulta DNS (instale bind-utils se não tiver).
+curl -I url       - Cabeçalhos HTTP (curl).
+curl -O url       - Baixa arquivo.
+wget url          - Baixa arquivo.
+ssh user@host     - Acessa servidor remoto via SSH.
+scp arquivo user@host:/caminho - Copia via SSH.
+netstat -tulnp    - Mostra portas abertas (pode usar ss).
+
+# Comprimir / empacotar
+tar -cvf arquivo.tar pasta    - Cria tar.
+tar -xvf arquivo.tar          - Extrai tar.
+tar -czvf arquivo.tar.gz dir  - Cria tar.gz.
+zip arquivo.zip arquivos...   - Cria zip.
+unzip arquivo.zip             - Extrai zip.
+
+# Git / desenvolvimento
+git clone <repo>    - Clona repositório.
+git status          - Estado do repositório.
+git pull            - Puxa atualizações.
+git add .; git commit -m "msg"; git push -u origin main
+
+# Pacotes (gerenciamento Termux)
+pkg update          - Atualiza lista de pacotes (atalho do apt).
+pkg upgrade         - Atualiza pacotes instalados.
+pkg install <pkg>   - Instala pacote (ex: pkg install python git).
+pkg uninstall <pkg> - Remove pacote.
+pkg search <nome>   - Procura pacote.
+pkg list-all        - Lista todos os pacotes disponíveis.
+apt update          - Atualizar índices (apt funciona também).
+apt upgrade         - Atualizar pacotes.
+
+# Instalação de pacotes populares
+pkg install python         - Python.
+pkg install clang          - Compilador C/C++.
+pkg install git            - Git.
+pkg install openssh        - SSH client/server.
+pkg install wget curl      - Ferramentas de download.
+pkg install nodejs         - Node.js.
+pkg install php            - PHP.
+pkg install ruby           - Ruby.
+pkg install vim nano       - Editores de texto.
+
+# Comandos Termux específicos (configuração e utilitários)
+termux-setup-storage            - Concede acesso à storage (cria ~/storage).
+termux-change-repo             - Alterar repositórios (mirrors).
+termux-reload-settings         - Recarrega configurações do Termux.
+termux-open <file>             - Abre arquivo com app Android padrão.
+termux-open-url <url>          - Abre URL no navegador Android.
+termux-share <file>            - Compartilha arquivo via Android share sheet.
+termux-toast "mensagem"        - Mostra toast (instalar termux-api).
+termux-notification --title "t" --content "c" - Envia notificação.
+termux-wake-lock               - Evita suspensão (mantenha CPU acordada).
+termux-wake-unlock             - Libera wake-lock.
+termux-repo add <nome> <url>   - Adiciona repositório customizado.
+
+# Termux:API (necessita do pacote termux-api instalado)
+# (execute: pkg install termux-api)
+termux-clipboard-get           - Pega texto da área de transferência.
+termux-clipboard-set "texto"   - Cola texto na área de transferência.
+termux-battery-status          - Mostra status da bateria (JSON).
+termux-camera-photo -c 0 foto.jpg  - Tira foto com câmera (0/1 para câmeras).
+termux-sms-send -n NUM "mensagem"  - Envia SMS.
+termux-sms-list                - Lista SMS (pode variar).
+termux-telephony-call <num>    - Inicia chamada telefônica.
+termux-telephony-deviceinfo    - Info do dispositivo (IMEI, etc).
+termux-location               - Pega localização atual (GPS/Network).
+termux-sensor -s accelerometer -o out.json -n 10  - Lê sensores.
+termux-notification --help     - Mais opções de notificação.
+termux-media-player play file  - Reproduz áudio.
+termux-volume                 - Controla volumes (dependendo da versão).
+termux-vibrate                - Faz o dispositivo vibrar.
+termux-open-url <url>         - Abre URL no navegador.
+
+# Utilitários úteis
+which <cmd>        - Mostra onde está o executável.
+alias name='cmd'   - Cria atalho temporário para comandos.
+crontab -e          - Edita cron jobs (pode precisar instalar).
+date               - Mostra data e hora.
+cal                - Mostra calendário.
+useradd / adduser   - Normalmente não aplicável no Termux (ambiente limitado).
+passwd              - Trocar senha (não usual no Termux).
+
+# Python / Pip
+python -V          - Versão do Python.
+python script.py   - Executa script Python.
+pip install pacote - Instala pacote Python (pip).
+pip3 install ...   - Em sistemas com pip3.
+
+# Node.js / npm
+node -v            - Versão do Node.
+npm install -g pacote - Instala globalmente.
+
+# Segurança / logs
+logcat             - Mostra logs do Android (pode requerer permissão).
+su                 - Elevar privilégios (apenas em dispositivos com root).
+
+# Dicas rápidas de uso
+- Para salvar essa lista em arquivo: cat > comandos-termux.txt (cole) CTRL+D
+- Para ver histórico de comandos: history
+- Para executar último comando com sudo-like (não existe sudo): use su se tiver root
+- Para instalar Termux:API (muitos comandos acima dependem dele): pkg install termux-api
+
+=================================================================================
+OBSERVAÇÕES:
+- Alguns comandos dependem de pacotes opcionais (ex.: termux-api, htop, traceroute).
+- Termux é basicamente um ambiente Linux: muitos comandos são os mesmos do desktop.
+- Se houver um comando que você usa sempre, posso transformar essa lista em um arquivo
+  pronto (por exemplo: ~/comandos-termux.txt) e te mostrar um comando para imprimir
+  na tela com `cat ~/comandos-termux.txt` ou `less ~/comandos-termux.txt`.
+- Se quiser, eu já salvo essa lista num arquivo formatado (TXT/MD) e te dou o comando
+  para baixar/imprimir no Termux — quer que eu gere o arquivo agora?
+
+================================================================================="
+exec $SHELL

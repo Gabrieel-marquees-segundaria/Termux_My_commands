@@ -1,7 +1,6 @@
 #!/bin/bash
-echo "Iniciando servidor..."
-cd /storage/emulated/0/__Projetos__/git_off/public/javascript/threejs-v
+echo "Iniciando server"
 #python -m http.server 8080 # replaced to file
 #python ~/bin/python/server.py
-python ~/bin/python/server2.py
+python ~/bin/python/server3.py
 exec $SHELL
