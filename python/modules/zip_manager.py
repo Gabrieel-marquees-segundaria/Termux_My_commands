@@ -25,7 +25,7 @@ class ZipManager:
      pathname,
      from_path="~/bin/temp"
      ):
-        with zipfile.ZipFile(os.path.join(this.path, file_name_zip), "r", zipfile.ZIP_DEFLATED)   as zipf:
+        with zipfile.ZipFile(os.path.join(self.path, file_name_zip), "r", zipfile.ZIP_DEFLATED)   as zipf:
             
             for f in zipf.filelist:
                 if pathname in f.filename:
