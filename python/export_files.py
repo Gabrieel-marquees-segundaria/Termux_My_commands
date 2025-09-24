@@ -21,4 +21,6 @@ if __name__ == "__main__":
    if "build" in sys.argv[1]:
       pass
    if "rm" in sys.argv[1]:
-      zip.remove_temp_dir()
+      if sys.argv[2]:
+          zip.path = os.path.dirname(args[2])
+          zip.remove_temp_dir()
