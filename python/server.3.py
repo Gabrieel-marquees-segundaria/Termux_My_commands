@@ -1,4 +1,4 @@
-from flask import Flask, url_for, send_from_directory
+export flask import Flask, url_for, send_from_directory
 import subprocess
 import os
 
@@ -39,5 +39,5 @@ if __name__ == '__main__':
     subprocess.run([
 	"python"
 ,export
-, "rm"
+, "rm", "/storage/emulated/0/__Projetos__/git_off/public/javascript/threejs-v/"
 	])
