@@ -8,7 +8,7 @@ print(path)
 class ZipManager:
     def __init__(self, path):
         self.path = path
-        
+        self.tempdir = None 
     def comp(self, nome_pasta, nome_arquivo_zip):
         with zipfile.ZipFile(os.path.join(self.path, nome_arquivo_zip), 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, _, files in os.walk(nome_pasta):
@@ -25,15 +25,20 @@ class ZipManager:
      pathname,
      from_path="~/bin/temp"
      ):
-        with zipfile.ZipFile(os.path.join(self.path, file_name_zip), "r", zipfile.ZIP_DEFLATED)   as zipf:
-            
+        self.tempdir = from_path
+        with zipfile.ZipFile( file_name_zip, "r", zipfile.ZIP_DEFLATED)   as zipf:
+       
+     
             for f in zipf.filelist:
                 if pathname in f.filename:
-                    zipf.extract(f.filename,os.path.join(self.path, from_path))
+                    zipf.extract(f.filename,from_path)
                     
     def remove_temp_dir(self, temp="temp"):
         
-        temppath = os.path.join(self.path, temp)
+        temppath = self.tempdir
+        if not temppath:
+            print("Errp: path is not defined")
+            return 
         if not os.path.exists(temppath):
             print("Erro: temp dir is not found")
             return

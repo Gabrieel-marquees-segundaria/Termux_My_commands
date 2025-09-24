@@ -1,4 +1,4 @@
-export flask import Flask, url_for, send_from_directory
+from flask import Flask, url_for, send_from_directory
 import subprocess
 import os
 
