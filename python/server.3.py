@@ -1,18 +1,25 @@
 from flask import Flask, url_for, send_from_directory
 import subprocess
+import os
 
-
+path = os.path.dirname(__file__)
+export = os.path.join(path, "export_files.py")
 app = Flask(__name__)
+
 subprocess.run(
 [
 "python"
-,"export_files.py"
+,export
 , "extract"
 , "/storage/emulated/0/__Projetos__/git_off/public/javascript/threejs-v/threejs.zip",
- "r149"
+ "r149",
+os.path.join(path, "temp")
+
 ]
       )
-
+#if not os.path.exists("~/bin/temp"):
+#   subprocess.run("mkdir ~/bin/temp")
+subprocess.run("cd ~/bin/temp && ls", shell=True)
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
@@ -31,6 +38,6 @@ if __name__ == '__main__':
     app.run(debug=True)
     subprocess.run([
 	"python"
-,"export_files.py"
+,export
 , "rm"
 	])

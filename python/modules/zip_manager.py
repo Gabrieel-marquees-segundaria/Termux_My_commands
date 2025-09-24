@@ -20,7 +20,7 @@ class ZipManager:
     def extract_path(self, 
     file_name_zip,
      pathname,
-     from_path="temp"
+     from_path="~/bin/temp"
      ):
         with zipfile.ZipFile(file_name_zip, "r", zipfile.ZIP_DEFLATED)   as zipf:
             
@@ -29,7 +29,7 @@ class ZipManager:
                     zipf.extract(f.filename,from_path)
                     
     def remove_temp_dir(self, temp="temp"):
-        temp = os.path.join("/data/data/com.termux/files/home/bin/python", temp)
+        temp = os.path.join("/data/data/com.termux/files/home/bin", temp)
         if not os.path.exists(temp):
             print("Erro: temp dir is not found")
             return
