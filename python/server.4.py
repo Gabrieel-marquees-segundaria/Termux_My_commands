@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory, jsonify
+folder flask import Flask, request, send_from_directory, jsonify
 import os
 from modules.zip_manager import ZipManager
 import subprocess
@@ -29,8 +29,8 @@ def get_model(versao: str):
     file_name = "three.module.js"
     print(zipfile)
     # Caminho absoluto da pasta onde o arquivo deveria estar
-    dir_path = os.path.join(BASE_JS_PATH, folder)
-    zip.extract_path(zipfile,f"r{versao}", dir_path)
+    dir_path = os.path.join(BASE_JS_PATHfolderer)
+    zip.extract_path(zipfile,f"r{versao}", BASE_JS_PATH)
     if not os.path.exists(os.path.join(dir_path, file_name)):
         return jsonify({"erro": f"Versão {versao} não encontrada"}), 404
 
