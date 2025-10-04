@@ -22,7 +22,7 @@ if __name__ == "__main__":
                   cont += 1
 
 
-        dirs = [d for d in os.listdir() if os.path.isdir(d)]
+        dirs = [d for d in os.listdir() if os.path.isdir(d) if args[1] in d ]
 
         with open("/dev/tty", "w") as tty:
             for i, d in enumerate(dirs):
