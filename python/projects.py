@@ -22,8 +22,9 @@ if __name__ == "__main__":
                   cont += 1
 
 
-          selected =int( input(string))
-          #os.chdir(lista[selected])
-          #print(f"{os.getcwd()}")
-          #subprocess.run(f"cd \{lista[selected]}", shell=True)
-          print(lista[selected])
+        selected =int( input(string))
+        #os.chdir(lista[selected])
+        #print(f"{os.getcwd()}")
+        #subprocess.run(f"cd \{lista[selected]}", shell=True)
+        print(lista[selected])
+        
