@@ -1,0 +1,47 @@
+diff --git a/auto_commit b/auto_commit
+index b6001c4..c83cf40 100755
+--- a/auto_commit
++++ b/auto_commit
+@@ -1,3 +1,40 @@
+ #!/bin/bash
+-diff_data=$(git diff)	
+-echo "diff: $diff_data" 
++
++# 1️⃣ Captura o diff atual do git
++diff_data=$(git diff)
++#echo "diff: $diff_data"
++
++# 2️⃣ Inicia o Ollama em background e salva logs
++#ollama serve > ollama.log 2>&1 &
++echo "Ollama iniciado em background."
++
++# 3️⃣ Dá um pequeno tempo para o Ollama iniciar
++sleep 2
++
++# 4️⃣ Verifica se o processo está rodando
++status=$(ps aux | grep "ollama")
++echo "Status inicial: $status"
++
++# 5️⃣ Define flag inicial
++isStarted="false"
++
++# ⚠️ Corrigido o formato do while
++#   - Coloque espaços dentro de [ ]
++#   - Use == para comparar strings
++#   - O valor deve ser testado corretamente
++while [ "$isStarted" != "true" ]; do
++    # Executa o script Python para verificar se iniciou
++    # isStarted=$(python3 "Automatic_commit/started.py" "serve" status)
++    isStarted=$(python3 Automatic_commit/started.py "ollama" "$(ps aux)")
++    echo "isStarted: $isStarted"
++    isStarted="true"
++    # Espera 1 segundo antes de checar novamente
++    sleep 1
++done
++
++echo "✅ Ollama iniciado com sucesso e validado pelo Python!"
++cd ~/bin/
++#python3  Automatic_commit/main.py "ollama" "$diff_data"
++sleep 5
++#pkill ollama
++

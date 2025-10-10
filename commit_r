@@ -1,4 +1,16 @@
 #!/bin/bash
-git add .
-git commit -m "update"
+commit="$2"
+file="$1"
+if [-n $"commit"]; then
+   echo "true"
+else
+   commit="update"
+fi
+if [-n "$file"]; then
+  echo "true"
+else
+   file="."
+fi
+git add "$file"
+git commit -m "$commit"
 git push

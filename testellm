@@ -1,0 +1,7 @@
+##!/bin/bash
+
+ollama serve > ollama.log 2>&1 &
+
+sleep 3
+
+echo $(ollama run "tinyllama:latest" "say hi")
